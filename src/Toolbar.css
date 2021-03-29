@@ -1,0 +1,23 @@
+.RichEditorStyleButton {
+    border: 1px solid #CCCCCC;
+    padding: 0.3rem;
+    margin: 0.2rem;
+    cursor: pointer;
+    transition: background-color 0.5s ease 0s;
+    -webkit-transition: background-color 0.5s ease 0s; /* Safari */
+}
+
+.RichEditorStyleButton:hover, .RichEditorActiveButton:active {
+    background-color: #CCCCCC;
+}
+
+.RichEditorStyleButton.RichEditorActiveButton {
+    background-color: #CCCCCC;
+}
+
+.RichEditorControls {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, 40px);
+    text-align: center;
+}
