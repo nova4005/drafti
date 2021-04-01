@@ -7,10 +7,6 @@ import './Drafti.css';
 
 // @ts-ignore
 export const Drafti = (props: any) => {
-    const [editorState, setEditorState] = React.useState(
-        EditorState.createEmpty()
-    );
-
     const styleMap = {
         CODE: {
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
@@ -41,11 +37,11 @@ export const Drafti = (props: any) => {
     }, []);
 
     const onChange = (ES: any) => {
-        setEditorState(ES);
+        props.setEditorState(ES);
     };
 
-    const handleKeyCommand = (command: any, editorState: EditorState) => {
-        const newState = RichUtils.handleKeyCommand(editorState, command);
+    const handleKeyCommand = (command: any, state: EditorState) => {
+        const newState = RichUtils.handleKeyCommand(state, command);
         if (newState) {
             onChange(newState);
             return 'handled';
@@ -57,11 +53,11 @@ export const Drafti = (props: any) => {
         if (e.keyCode === 9 /* TAB */) {
             const newEditorState = RichUtils.onTab(
                 e,
-                editorState,
+                props.editorState,
                 4, /* maxDepth */
             );
 
-            if (newEditorState !== editorState) {
+            if (newEditorState !== props.editorState) {
                 onChange(newEditorState);
             }
             return null;
@@ -72,13 +68,13 @@ export const Drafti = (props: any) => {
     return (
         <div className="RichEditor-root"
              onClick={focusEditor}>
-            <Toolbar editorState={editorState}
-                     set={setEditorState}
+            <Toolbar editorState={props.editorState}
+                     set={props.setEditorState}
                      onChange={onChange} />
             <Editor
                 ref={editor}
-                editorState={editorState}
-                onChange={editorState => onChange(editorState)}
+                editorState={props.editorState}
+                onChange={state => onChange(state)}
                 blockStyleFn={getBlockStyle}
                 customStyleMap={styleMap}
                 handleKeyCommand={handleKeyCommand}

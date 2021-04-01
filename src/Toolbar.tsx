@@ -6,7 +6,6 @@ import './Toolbar.css';
 const Toolbar = (props: any) => {
     // @ts-ignore
     const onBoldClick = () => {
-        console.log('ES', props.editorState);
         RichUtils.toggleInlineStyle(props.editorState, 'BOLD');
         console.log("Test");
     };
